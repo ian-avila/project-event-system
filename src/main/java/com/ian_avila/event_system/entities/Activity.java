@@ -2,10 +2,7 @@ package com.ian_avila.event_system.entities;
 
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "tb_activity")
@@ -19,6 +16,7 @@ public class Activity {
 
     @Column(columnDefinition = "TEXT")
     private String description;
+
     private Double price;
 
     @ManyToOne
@@ -91,5 +89,17 @@ public class Activity {
 
     public Set<Participant> getParticipants() {
         return participants;
+    }
+
+    @Override
+    public final boolean equals(Object o) {
+        if (!(o instanceof Activity activity)) return false;
+
+        return Objects.equals(id, activity.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
     }
 }

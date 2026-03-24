@@ -3,6 +3,7 @@ package com.ian_avila.event_system.entities;
 import jakarta.persistence.*;
 
 import java.time.Instant;
+import java.util.Objects;
 
 @Entity
 @Table(name = "tb_block")
@@ -59,5 +60,17 @@ public class Block {
 
     public void setActivity(Activity activity) {
         this.activity = activity;
+    }
+
+    @Override
+    public final boolean equals(Object o) {
+        if (!(o instanceof Block block)) return false;
+
+        return Objects.equals(id, block.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
     }
 }

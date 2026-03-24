@@ -3,6 +3,7 @@ package com.ian_avila.event_system.entities;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -56,5 +57,17 @@ public class Participant {
 
     public Set<Activity> getActivities() {
         return activities;
+    }
+
+    @Override
+    public final boolean equals(Object o) {
+        if (!(o instanceof Participant that)) return false;
+
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
     }
 }
